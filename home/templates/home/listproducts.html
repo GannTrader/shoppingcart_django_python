@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Trang Sản Phẩm</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			{% for  item in listpro %}
+				<div class="card col-md-4" style="width:400px">
+				<img class="card-img-top" src="media/{{item.image}}" alt="Card image">
+				  <div class="card-body">
+				    <h4 class="card-title"><a href="{% url 'home:detail' item.id %}" title="">{{item.title}}</a></h4>
+				    <p class="card-text">{{item.description}}</p>
+				    <!-- <a href="#" class="card-link">Add to Card</a> -->
+				    <p class="card-text">{{item.price}}</p>
+				    <button type="" class="btn btn-danger">Add to Card</button>
+				  </div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	
+</body>
+</html>

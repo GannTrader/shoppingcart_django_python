@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Chi tiết sản phẩm</title>
+	<link rel="stylesheet" href="">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<h2>{{pro.title}}</h2>
+	<p><input type="hidden" id="id" value="{{pro.id}}"></p>
+	Ảnh: <p><img src="/media/{{pro.image}}" width="20%"></p>
+	Giá: <p>{{pro.price}}.000đ</p>
+	Số lượng: <p><input type="number" min="1" placeholder="0" id="number"></p>
+	<button type="">Mua Hàng</button>
+
+	<script>
+		$(document).ready(function(){
+			$("button").click(function(){	
+				//lấy số lượng sản phẩm người dùng mua
+				number = $("#number").val();
+				//lấy id của sản phẩm
+				idsp = $("#id").val();			
+				$.post({% url 'home:cart' %},
+				    {
+				      "idsp": idsp,
+				      "number": number,
+				      "csrfmiddlewaretoken": '{{csrf_token}}' //this is default, donot change
+				    },
+				    function(data){
+				      alert(data);
+				    });
+				// alert("Số lượng bạn mua:" + number + "\nID sản phẩm:" +idsp);
+			});
+		});
+	</script>								
+</body>
+</html>
